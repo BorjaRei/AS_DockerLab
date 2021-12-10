@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+ calculadora:
+  image: 'borjareinoso/calcu'
+  volumes:
+  - static-content:/usr/local/CalculadoraAS
+ 
+ tomcat:
+  image: 'tomcat:8.5.73-jdk17-temurin-focal'
+  ports: 
+  - 8085:8080
+  volumes:
+  - static-content:/usr/local/tomcat/webapps/CalculadoraAS 
+  - webapp:/usr/local/tomcat/webapps
+ 
+ tomcat2:
+  image: 'tomcat:8.0'
+  volumes:
+  - webapp:/usr/local/tomcat/webapps
+
+volumes:
+ static-content:
+  driver: local
+ webapp:
+  driver: local
